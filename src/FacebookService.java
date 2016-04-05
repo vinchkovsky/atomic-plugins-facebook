@@ -28,6 +28,7 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.GameRequestDialog;
 import com.facebook.share.widget.ShareDialog;
 import com.facebook.share.widget.AppInviteDialog;
+import com.facebook.share.model.AppInviteContent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
