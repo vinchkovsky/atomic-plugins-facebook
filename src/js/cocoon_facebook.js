@@ -270,6 +270,19 @@
                     FB.ui(params,cb);
                 }
             },
+			
+			invite: function(params, cb) {
+
+                if (this.native){
+                    var options = arguments[0];
+                    var callback = arguments.length > 1 ? arguments[1]: function(){};
+
+                    return Cocoon.exec(this.serviceName, "ui", [options], callback, callback);
+                }
+                else {
+                    FB.ui(params,cb);
+                }
+            },
 
             /**
              * Allows you to ask additional permission from the current ones.
@@ -284,6 +297,20 @@
 
                     var permsArray = permissions.split(',');
                     Cocoon.exec(this.serviceName, "requestAdditionalPermissions", [permissionsType, permsArray], function(session, error){
+                        if (callback) {
+                            callback(toFBAPISession(session,error));
+                        }
+                    });
+                }
+                else {
+                    FB.login(callback, {scope:permissions});
+                }
+            },
+			
+			invite: function(appUrl, iconUrl, callback) {
+                if (this.native) {
+
+                     Cocoon.exec(this.serviceName, "invite", [appUrl, iconUrl], function(session, error){
                         if (callback) {
                             callback(toFBAPISession(session,error));
                         }

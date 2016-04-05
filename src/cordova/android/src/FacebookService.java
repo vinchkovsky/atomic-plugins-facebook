@@ -27,6 +27,7 @@ import com.facebook.share.model.GameRequestContent;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.GameRequestDialog;
 import com.facebook.share.widget.ShareDialog;
+import com.facebook.share.widget.AppInviteDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -125,6 +126,21 @@ public class FacebookService  {
     public void logout() {
         LoginManager.getInstance().logOut();
     }
+	
+	public void invite(String url, String image, Activity fromActivity, SessionCallback callback) {
+		boolean ready = this.isLoggedIn();
+		if (ready)
+		{
+			Log.v("TAG", "FB canShow = " + AppInviteDialog.canShow());
+			if (AppInviteDialog.canShow()) {
+				AppInviteContent content = new AppInviteContent.Builder()
+							.setApplinkUrl(appLinkUrl)
+							.setPreviewImageUrl(previewImageUrl)
+							.build();
+				AppInviteDialog.show(fromActivity, content);
+			}
+		}
+	}
 
     public void requestAdditionalPermissions(String type, Collection<String> permissions, Activity fromActivity, SessionCallback callback) {
 
