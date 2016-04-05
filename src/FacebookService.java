@@ -135,8 +135,8 @@ public class FacebookService  {
 			Log.v("TAG", "FB canShow = " + AppInviteDialog.canShow());
 			if (AppInviteDialog.canShow()) {
 				AppInviteContent content = new AppInviteContent.Builder()
-							.setApplinkUrl(appLinkUrl)
-							.setPreviewImageUrl(previewImageUrl)
+							.setApplinkUrl(url)
+							.setPreviewImageUrl(image)
 							.build();
 				AppInviteDialog.show(fromActivity, content);
 			}
